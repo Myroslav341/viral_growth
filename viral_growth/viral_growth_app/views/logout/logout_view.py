@@ -1,0 +1,12 @@
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.urls import reverse
+from ..base_view import BaseView
+from ...library.constants import *
+
+
+class LogoutView(BaseView):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+
+        return redirect(reverse(LOGIN_PAGE))

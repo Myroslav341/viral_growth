@@ -1,0 +1,59 @@
+{% extends "viral_growth_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+
+{% block imports %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/login.css' %}">
+{% endblock imports %}
+
+{% block content %}
+    <div class="container main_container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="" method="post">
+                    {% csrf_token %}
+                        <div class="form-group input_field">
+                            <label for="email">Email</label>
+                            {{ form.username }}
+
+                            {% for key, value in form.errors.items %}
+                                {% if key == 'email' %}
+                                    <div class="validation_error">
+                                        {{ value }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form-group input_field">
+                            <label for="password">Password</label>
+                            {{ form.password }}
+
+                            {% for key, value in form.errors.items %}
+                                {% if key == 'password' %}
+                                    <div class="validation_error">
+                                        {{ value }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-2">
+                                <a class="btn btn-primary" href="/sign-up" role="button" id="signup_button">Sign up</a>
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-2">
+                                <button type="submit" class="btn btn-primary" id="login_button">Login</button>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                    </form>
+                </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+{% endblock content %}

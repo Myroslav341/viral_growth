@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': os.environ.get('VIRAL_GROWTH_DB_NAME'),
         'USER': os.environ.get('VIRAL_GROWTH_DB_USER'),
         'PASSWORD': os.environ.get('VIRAL_GROWTH_DB_PASSWORD'),
-        'HOST': '',
+        'HOST': '',  # todo import this
         'PORT': os.environ.get('VIRAL_GROWTH_DB_PORT'),
     }
 }
@@ -126,3 +126,5 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = ['viral_growth_app.backends.LoginBackend']
 AUTH_USER_MODEL = 'viral_growth_app.User'
+
+LOGIN_URL = '/login'

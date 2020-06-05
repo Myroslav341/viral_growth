@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.utils.translation import gettext_lazy as _
-from .usermanager import UserManager
+from django.utils.translation import gettext_lazy as _  # todo ?
 from django.contrib.auth.models import PermissionsMixin
+from .usermanager import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -19,12 +19,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('user')
+        verbose_name = _('user')  # todo ?
         verbose_name_plural = _('users')
 
-    def __str__(self):  # todo __repr__ mixin
-        return f"{self.username}"
+    def __str__(self):
+        return f'{self.email}'

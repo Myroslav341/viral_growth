@@ -1,0 +1,22 @@
+.main_container {
+    padding-top: 10%;
+}
+
+.input_field {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.validation_error {
+    color: red;
+}
+
+#login_button {
+    margin-left: 10%;
+}
+
+#signup_button {
+    float: right;
+    margin-right: 10%;
+}

@@ -1,22 +1,23 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
-from django.http import request
+from django.http import request as django_request
+from ..library.constants import *
 from ..models import User
 
 
 class LoginBackend(ModelBackend):
-    def authenticate(self, request: request, username: str = None, password: str = None, **kwargs) -> User:
+    def authenticate(self, request: django_request, username: str = None, password: str = None, **kwargs) -> User:
         user_model = get_user_model()
 
         if username is None:
-            username = kwargs.get('email')
+            username = kwargs.get(EMAIL)
 
         try:
             user = user_model.objects.get(email=username)
         except user_model.DoesNotExist:
-            raise ValueError({'email': 'No such email'})
+            raise ValueError({EMAIL: 'No such email'})
 
         if user.check_password(password):
             return user
 
-        raise ValueError({'password': 'Incorrect password'})
+        raise ValueError({PASSWORD: 'Incorrect password'})
