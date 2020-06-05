@@ -1,4 +1,3 @@
-from django.core import signing
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
