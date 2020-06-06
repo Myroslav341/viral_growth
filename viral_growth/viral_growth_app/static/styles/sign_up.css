@@ -1,0 +1,18 @@
+.main_container {
+    padding-top: 10%;
+    width: 40%;
+}
+
+.validation_error {
+    color: red;
+}
+
+#sign_up_button {
+    float: center;
+}
+
+.center_block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

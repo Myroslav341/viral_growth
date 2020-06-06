@@ -26,7 +26,7 @@ class LoginView(BaseView):
 
     def __login_user(self, request, login_form):
         try:
-            user = authenticate(username=login_form.cleaned_data[USERNAME],
+            user = authenticate(username=login_form.cleaned_data[EMAIL],
                                 password=login_form.cleaned_data[PASSWORD])
 
             login(request, user)  # todo how does login work? cookies, jwt?

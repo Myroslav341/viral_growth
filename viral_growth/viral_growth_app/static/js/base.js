@@ -1,16 +1,14 @@
-function check() {
+function copy_link() {
+    var x = parseInt(event.clientX) + 12;
+    var y = parseInt(event.clientY) + 12;
+
     fetch("generate-invitation-link/")
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            updateClipboard(data["invitation_link"])
+            updateClipboard(data["invitation_link"], x, y)
         });
-
-    var x = parseInt(event.clientX) + 12;
-    var y = parseInt(event.clientY) + 12;
-
-    create_flash(x, y);
 }
 
 function create_flash(x, y) {
@@ -52,12 +50,12 @@ function create_flash(x, y) {
             element.style.filter = 'alpha(opacity=' + opacity * 100 + ")";
             opacity -= step;
         }, 50);
-    }, 1000);
+    }, 800);
 }
 
-function updateClipboard(newClip) {
+function updateClipboard(newClip, x, y) {
     navigator.clipboard.writeText(newClip).then(function() {
-        /* clipboard successfully set */
+        create_flash(x, y);
     }, function() {
         alert("clipboard copy error");
     });

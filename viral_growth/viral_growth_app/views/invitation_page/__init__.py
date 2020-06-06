@@ -1,0 +1,1 @@
+from .invitation_page_view import InvitationPageView

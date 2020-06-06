@@ -1,0 +1,36 @@
+{% extends "viral_growth_app/base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Join us!</title>
+{% endblock title %}
+
+{% block imports %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/invitation_page.css' %}">
+{% endblock imports %}
+
+{% block content %}
+
+  <div class="container main_container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="" method="post">
+                    {% csrf_token %}
+                        <div class="form-group center_block" id="hello_text" style="font-size: 26px;">
+                            <h1>Hello!</h1>
+                            <br>
+                            You was invited by {{ username }} to join our family of
+                            <h2>Viral Growth</h2>
+                        </div>
+                        <br>
+                        <div class="form-group center_block">
+                            <button type="submit" class="btn btn-primary" id="accept_button">Accept the invitation</button>
+                        </div>
+                    </form>
+                </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+
+{% endblock content %}

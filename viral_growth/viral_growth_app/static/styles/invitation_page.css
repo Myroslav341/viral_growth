@@ -1,0 +1,21 @@
+.main_container {
+    padding-top: 10%;
+}
+
+.center_block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hello_text {
+    text-align: center;
+    font-size: 26px;
+}
+
+#accept_button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}

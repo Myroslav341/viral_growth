@@ -9,6 +9,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(_('username'), unique=True, max_length=12, blank=True)
 
+    invited_users_count = models.IntegerField(default=0)
+    joined_users_count = models.IntegerField(default=0)
+
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -25,6 +28,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')  # todo ?
         verbose_name_plural = _('users')
+
+    def increase_invited_count(self):
+        self.invited_users_count += 1
+        self.save()
+
+    def increase_joined_count(self):
+        self.joined_users_count += 1
+        self.save()
 
     def __str__(self):
         return f'{self.email}'
