@@ -24,7 +24,7 @@ class LoginView(BaseView):
         else:
             return self.render_template(request, form=login_form)
 
-    def __login_user(self, request, login_form):
+    def __login_user(self, request, login_form):  # todo cleaned data
         try:
             user = authenticate(username=login_form.cleaned_data[EMAIL],
                                 password=login_form.cleaned_data[PASSWORD])

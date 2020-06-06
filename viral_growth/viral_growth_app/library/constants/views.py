@@ -8,6 +8,7 @@ INVITATION_LINK_KEY = 'invitation_link'
 HTTP_HOST = 'HTTP_HOST'
 DATA = 'data'
 ID = 'id'
+AVATAR = 'avatar'
 
 THIS_APP_NAME = ViralGrowthAppConfig.name
 

@@ -128,3 +128,11 @@ AUTHENTICATION_BACKENDS = ['viral_growth_app.backends.LoginBackend']
 AUTH_USER_MODEL = 'viral_growth_app.User'
 
 LOGIN_URL = '/login'
+
+AWS_ACCESS_KEY_ID = 'AKIATY2ETKJBBO3SEQ5E'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'viral-growth-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
