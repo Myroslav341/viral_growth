@@ -14,7 +14,6 @@ class HomeView(LoginRequiredMixin, BaseView):
     template_name = HOME_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):
-        data = UserSerializer(request.user).data
         return self.render_template(
             request,
             avatar_form=AvatarForm(),
@@ -23,7 +22,7 @@ class HomeView(LoginRequiredMixin, BaseView):
             **UserSerializer(request.user).data
         )
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):  # todo move to another view
         avatar_form = AvatarForm(request.POST, request.FILES)
 
         if avatar_form.is_valid():

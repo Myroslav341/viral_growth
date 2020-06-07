@@ -7,7 +7,6 @@ class ChangeProfileInfoForm(forms.Form):
             attrs={
                 'class': 'form-control',
                 'id': 'message-text',
-                'style': 'height:200px;'
             }
         )
     )

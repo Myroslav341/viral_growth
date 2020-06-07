@@ -7,9 +7,9 @@ def validate_password(value: str):
 
 
 def validate_unique_field(model, field: str):
-    def validate_unique(value: str):
+    def validate_unique_model_field(value: str):
         for object in model.objects.all():
             if getattr(object, field) == value:
                 raise ValidationError(f'Unique validation failed for {field}')
 
-    return validate_unique
+    return validate_unique_model_field

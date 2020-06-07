@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.urls import reverse
 from ...library.constants import *

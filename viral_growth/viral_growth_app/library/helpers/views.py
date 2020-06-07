@@ -31,3 +31,7 @@ def get_user_object(pk: int):
         return User.objects.get(pk=pk)
     except User.DoesNotExist:
         raise Http404
+
+
+def prepare_s3_image_url(url: str) -> str:
+    return url.split('?')[0]

@@ -20,14 +20,16 @@ class LoginView(BaseView):
         login_form = self.login_form_class(request.POST)
 
         if login_form.is_valid():
-            return self.__login_user(request, login_form)
+            return self.__login_user(request, login_form.cleaned_data)
         else:
             return self.render_template(request, form=login_form)
 
-    def __login_user(self, request, login_form):  # todo cleaned data
+    def __login_user(self, request, login_form):
+        form_data = login_form.cleaned_data
+
         try:
-            user = authenticate(username=login_form.cleaned_data[EMAIL],
-                                password=login_form.cleaned_data[PASSWORD])
+            user = authenticate(username=form_data[EMAIL],
+                                password=form_data[PASSWORD])
 
             login(request, user)  # todo how does login work? cookies, jwt?
 

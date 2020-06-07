@@ -66,6 +66,10 @@
     width: 100%;
 }
 
+#message-text{
+    height:200px;
+}
+
 #edit_info_button{
     width: 100%;
 }
@@ -83,7 +87,6 @@
 
 #profile_change_form{
     width: 100%;
-
 }
 
 .change_item{

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from ..models import Page
+from ..library.helpers import prepare_s3_image_url
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -14,6 +15,6 @@ class PageSerializer(serializers.ModelSerializer):
         photos = []
 
         for i, photo in enumerate(obj.photo_set.all()):
-            photos.append([i + 1, photo.photo_file.url.split('?')[0]])
+            photos.append([i + 1, prepare_s3_image_url(photo.photo_file.url)])
 
         return photos
