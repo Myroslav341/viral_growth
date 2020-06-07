@@ -8,6 +8,9 @@ from ...serializers import UserSerializer
 
 
 class HomeView(LoginRequiredMixin, BaseView):
+    """
+    home page, user profile page
+    """
     template_name = HOME_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):

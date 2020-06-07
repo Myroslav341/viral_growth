@@ -5,7 +5,10 @@ from ..apps import ViralGrowthAppConfig
 class Page(models.Model):
     bio = models.TextField(default='Profile bio')
 
-    def get_short_bio(self):
+    def get_short_bio(self) -> str:
+        """
+        returns shorted user bio using profile_bio_short_length param
+        """
         if len(self.bio) > ViralGrowthAppConfig.profile_bio_short_length + 10:
             return self.bio[:ViralGrowthAppConfig.profile_bio_short_length] + ' ...'
 

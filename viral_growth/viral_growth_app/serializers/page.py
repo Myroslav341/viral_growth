@@ -1,3 +1,4 @@
+from typing import List
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 from ..models import Page
@@ -11,7 +12,11 @@ class PageSerializer(serializers.ModelSerializer):
         model = Page
         exclude = ['id']
 
-    def get_photos(self, obj):
+    def get_photos(self, obj: Page) -> List[List[str]]:
+        """
+        get loadable photo list
+        first element is photo number and the second is element url
+        """
         photos = []
 
         for i, photo in enumerate(obj.photo_set.all()):

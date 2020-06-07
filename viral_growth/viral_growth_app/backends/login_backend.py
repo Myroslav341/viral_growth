@@ -7,6 +7,11 @@ from ..models import User
 
 class LoginBackend(ModelBackend):
     def authenticate(self, request: django_request, username: str = None, password: str = None, **kwargs) -> User:
+        """
+        authenticate backend fore user login
+        :raises ValueError: if authenticate failed
+        :return User: authenticated user
+        """
         user_model = get_user_model()
 
         try:

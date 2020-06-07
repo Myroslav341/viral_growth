@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Page
 from django.shortcuts import redirect
 from django.urls import reverse
 from ..base_view import BaseView
@@ -9,6 +9,9 @@ from ...serializers import UserShortSerializer
 
 
 class UserListView(LoginRequiredMixin, BaseView):
+    """
+    user list representation using pagination
+    """
     template_name = USER_LIST_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):
@@ -19,7 +22,10 @@ class UserListView(LoginRequiredMixin, BaseView):
 
         return self.__configure_pagination(request, paginator, page_number)
 
-    def __configure_pagination(self, request, paginator, page_number):
+    def __configure_pagination(self, request, paginator: Paginator, page_number: int):
+        """
+        configure pagination data and users data
+        """
         try:
             page = paginator.page(page_number)
         except PageNotAnInteger:
@@ -35,7 +41,10 @@ class UserListView(LoginRequiredMixin, BaseView):
             pagination=pagination_data,
         )
 
-    def __get_pagination_data(self, page, page_number):
+    def __get_pagination_data(self, page: Page, page_number: int):
+        """
+        create and return pagination data for pagination bar in front
+        """
         pages = []
         pagination_data = {}
 

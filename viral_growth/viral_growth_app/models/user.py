@@ -1,3 +1,4 @@
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import gettext_lazy as _  # todo ?
@@ -42,14 +43,23 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
 
     def increase_invited_count(self):
+        """
+        increasing invited user count
+        """
         self.invited_users_count += 1
         self.save()
 
     def increase_joined_count(self):
+        """
+        increasing joined user count
+        """
         self.joined_users_count += 1
         self.save()
 
-    def update_avatar(self, new_avatar):
+    def update_avatar(self, new_avatar: InMemoryUploadedFile):
+        """
+        update user avatar
+        """
         if not str(self.avatar.name).endswith(DEFAULT_AVATAR):
             self.avatar.delete(save=False)
 
@@ -57,7 +67,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         self.save()
 
-    def upload_photo(self, photo_file):
+    def upload_photo(self, photo_file: InMemoryUploadedFile):
+        """
+        upload new photo to user profile
+        """
         from .photo import Photo
 
         photo = Photo()
@@ -69,6 +82,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         photo.save()
 
     def update_profile_bio(self, new_bio: str):
+        """
+        update user bio
+        """
         self.page.bio = new_bio
 
         self.page.save()

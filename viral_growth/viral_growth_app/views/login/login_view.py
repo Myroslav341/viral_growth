@@ -24,7 +24,10 @@ class LoginView(BaseView):
         else:
             return self.render_template(request, form=login_form)
 
-    def __login_user(self, request, login_form):
+    def __login_user(self, request, login_form: LoginForm):
+        """
+        login user from request
+        """
         form_data = login_form.cleaned_data
 
         try:

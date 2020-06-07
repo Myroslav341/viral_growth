@@ -20,5 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
             'page'
         ]
 
-    def get_avatar_url(self, obj):
+    def get_avatar_url(self, obj: User) -> str:
+        """
+        get loadable avatar url
+        """
         return prepare_s3_image_url(obj.avatar.url)

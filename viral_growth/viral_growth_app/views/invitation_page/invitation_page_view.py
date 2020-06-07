@@ -5,6 +5,9 @@ from ...library.constants import *
 
 
 class InvitationPageView(BaseView):
+    """
+    new user invitation page
+    """
     template_name = INVITATION_PAGE_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):
@@ -22,7 +25,10 @@ class InvitationPageView(BaseView):
 
         return redirect(reverse(SIGN_UP_PAGE, args=(signed_data,)))
 
-    def __handle_invited_count(self, signed_data):
+    def __handle_invited_count(self, signed_data: str):
+        """
+        increase invited count
+        """
         user = self.get_user_object_from_signed(signed_data)
 
         user.increase_invited_count()

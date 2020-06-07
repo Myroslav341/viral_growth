@@ -1,3 +1,6 @@
+from typing import Dict
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from ..base_view import BaseView
@@ -7,6 +10,9 @@ from ...models import User
 
 
 class SignUpView(BaseView):
+    """
+    new users registration
+    """
     template_name = SIGN_UP_VIEW_TEMPLATE
     signup_form_class = SignUpForm
 
@@ -21,7 +27,10 @@ class SignUpView(BaseView):
         else:
             return self.render_template(request, form=signup_form)
 
-    def __register_new_user(self, form_data, signed_data):
+    def __register_new_user(self, form_data: Dict, signed_data: str) -> HttpResponseRedirect:
+        """
+        register new user using UserManager
+        """
         User.objects.create_user(form_data[EMAIL], form_data[PASSWORD], form_data[USERNAME])
 
         if signed_data:
@@ -30,6 +39,9 @@ class SignUpView(BaseView):
         return redirect(reverse(LOGIN_PAGE))
 
     def __handle_joined_count(self, signed_data):
+        """
+        increase joined count
+        """
         user = self.get_user_object_from_signed(signed_data)
 
         user.increase_joined_count()

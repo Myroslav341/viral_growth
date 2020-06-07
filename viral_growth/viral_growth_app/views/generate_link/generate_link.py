@@ -6,10 +6,16 @@ from ...library.constants import *
 
 
 class GenerateLinkView(LoginRequiredMixin, BaseView):
+    """
+    endpoint for link generation
+    """
     def get(self, request, *args, **kwargs):
         return self.__generate_invitation_link(request)
 
-    def __generate_invitation_link(self, request):
+    def __generate_invitation_link(self, request) -> JsonResponse:
+        """
+        generate and return invitation link
+        """
         invitation_link = generate_invitation_link(
             http_host=request.META[HTTP_HOST],
             signed_data=sign_dict(id=request.user.id),
