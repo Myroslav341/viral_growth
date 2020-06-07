@@ -21,18 +21,20 @@
                 <div class="row">
                     <img src="{{ avatar_url }}" alt="avatar" class="avatar center_element" id="avatar">
                 </div>
-                <div class="row upload_container">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                                {{ avatar_form.avatar }}
-                                <label class="custom-file-label" for="avatar_upload" id="chosen_file">Choose file</label>
+                {% if avatar_form %}
+                    <div class="row upload_container">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    {{ avatar_form.avatar }}
+                                    <label class="custom-file-label" for="avatar_upload" id="chosen_file">Choose file</label>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary center_element" id="upload_button">Upload avatar</button>
-                    </form>
-                </div>
+                            <button type="submit" class="btn btn-primary center_element" id="upload_button">Upload avatar</button>
+                        </form>
+                    </div>
+                {% endif %}
                 <div class="row" id="invited_info">
                     <h6>Invited users: {{ invited_users_count }}</h6>
                     <h6>Joined users: {{ joined_users_count }}</h6>
@@ -48,31 +50,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="profile_change_container">
-                    <form action="upload-photo/" method="post" enctype="multipart/form-data" id="profile_change_form">
-                        {% csrf_token %}
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item change_item">
-                                        <div class="custom-file">
-                                            {{ upload_photo_form.photo }}
-                                            <label class="custom-file-label" for="photo_upload" id="chosen_file_2">Choose file</label>
+                {% if upload_photo_form %}
+                    <div class="row" id="profile_change_container">
+                        <form action="upload-photo/" method="post" enctype="multipart/form-data" id="profile_change_form">
+                            {% csrf_token %}
+                            <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item change_item">
+                                            <div class="custom-file">
+                                                {{ upload_photo_form.photo }}
+                                                <label class="custom-file-label" for="photo_upload" id="chosen_file_2">Choose file</label>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="submit" class="btn btn-primary center_element" id="upload_button_2">Upload new photo</button>
+                                        </li>
+                                    </ul>
+                                    <div class="form-inline my-lg-0">
+                                        <div class="nav-item">
+                                            <button type="button" class="btn btn-primary" id="edit_info_button_2" data-toggle="modal" data-target="#exampleModal" onclick="modal_create()">Edit info</button>
                                         </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <button type="submit" class="btn btn-primary center_element" id="upload_button_2">Upload new photo</button>
-                                    </li>
-                                </ul>
-                                <div class="form-inline my-lg-0">
-                                    <div class="nav-item">
-                                        <button type="button" class="btn btn-primary" id="edit_info_button_2" data-toggle="modal" data-target="#exampleModal" onclick="modal_create()">Edit info</button>
                                     </div>
                                 </div>
-                            </div>
-                        </nav>
-                    </form>
-                </div>
+                            </nav>
+                        </form>
+                    </div>
+                {% endif %}
 
                 <div class="container" id="photo_container">
                     <div class="row justify-content-md-center photo_row">
@@ -90,31 +94,33 @@
             </div>
         </div>
 
-        <div class="modal fade model_container" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editing profile info</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="change-profile-info/" method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Profile info:</label>
-                                {{ profile_info_form.profile_info }}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+        {% if profile_info_form%}
+            <div class="modal fade model_container" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editing profile info</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="change-profile-info/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Profile info:</label>
+                                    {{ profile_info_form.profile_info }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
         <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
  </div>

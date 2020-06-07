@@ -13,4 +13,5 @@ urlpatterns = [
     path('change-profile-info/', ChangeProfileInfoView.as_view(), name='change-profile-info'),
     path('upload-photo/', UploadPhotoView.as_view(), name='upload-photo'),
     path('user-list/<page>', UserListView.as_view(), name='user-list'),
+    path('user/<id>', ViewProfileView.as_view(), name='user'),
 ]

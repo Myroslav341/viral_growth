@@ -23,7 +23,7 @@ SIGN_UP_PAGE = f'{THIS_APP_NAME}:sign-up'
 USER_LIST_PAGE = f'{THIS_APP_NAME}:user-list'
 
 # templates
-HOME_VIEW_TEMPLATE = f'{THIS_APP_NAME}/home.html'
+PROFILE_VIEW_TEMPLATE = f'{THIS_APP_NAME}/home.html'
 LOGIN_VIEW_TEMPLATE = f'{THIS_APP_NAME}/login.html'
 INVITATION_PAGE_VIEW_TEMPLATE = f'{THIS_APP_NAME}/invitation_page.html'
 SIGN_UP_VIEW_TEMPLATE = f'{THIS_APP_NAME}/sign_up.html'

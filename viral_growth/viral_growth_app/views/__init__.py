@@ -7,3 +7,4 @@ from .sign_up import SignUpView
 from .change_profile_info import ChangeProfileInfoView
 from .upload_photo import UploadPhotoView
 from .user_list import UserListView
+from .view_profile import ViewProfileView
