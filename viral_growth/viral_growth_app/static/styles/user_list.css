@@ -1,0 +1,9 @@
+#main_container{
+    padding-top: 5%;
+}
+
+.center_element{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

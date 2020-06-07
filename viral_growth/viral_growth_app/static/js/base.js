@@ -2,7 +2,7 @@ function copy_link() {
     var x = parseInt(event.clientX) + 12;
     var y = parseInt(event.clientY) + 12;
 
-    fetch("generate-invitation-link/")
+    fetch("../generate-invitation-link/")
         .then((response) => {
             return response.json();
         })

@@ -20,7 +20,7 @@ class LoginView(BaseView):
         login_form = self.login_form_class(request.POST)
 
         if login_form.is_valid():
-            return self.__login_user(request, login_form.cleaned_data)
+            return self.__login_user(request, login_form)
         else:
             return self.render_template(request, form=login_form)
 

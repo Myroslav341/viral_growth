@@ -1,0 +1,72 @@
+{% extends "viral_growth_app/base.html" %}
+{% load static %}
+{% load custom_tags %}
+
+{% block title %}
+    <title>Users</title>
+{% endblock title %}
+
+{% block imports %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/user_list.css' %}">
+{% endblock imports %}
+
+{% block content %}
+    <div class="container" id="main_container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                {% for user in users %}
+                    <div class="card mb-3 center_element" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="{{ user.avatar_url }}" class="card-img avatar" alt="avatar">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="../user/{{ user.id }}" class="card-link">{{ user.username }}</a></h5>
+                                    <p class="card-text">{{ user.bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        {% if pagination.previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="../user-list/{{ pagination.previous }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="" aria-disabled="true">Previous</a>
+                            </li>
+                        {% endif %}
+
+                        {% for page_number in pagination.pages %}
+                            {% if page_number == pagination.current %}
+                                <li class="page-item active">
+                            {% else %}
+                                <li class="page-item">
+                            {% endif %}
+                                    <a class="page-link" href="../user-list/{{ page_number }}">{{ page_number }}</a>
+                                </li>
+                        {% endfor %}
+
+                        {% if pagination.next %}
+                            <li class="page-item">
+                                <a class="page-link" href="../user-list/{{ pagination.next }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="" aria-disabled="true">next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/user_list.js' %}"></script>
+{% endblock content %}
