@@ -68,10 +68,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         photo.save()
 
-    def update_profile_info(self, new_info: str):
-        self.page.profile_info = new_info
+    def update_profile_bio(self, new_bio: str):
+        self.page.bio = new_bio
 
         self.page.save()
 
     def __str__(self):
-        return f'{self.email}'
+        return f'{self.__class__.__name__}: {self.email}'

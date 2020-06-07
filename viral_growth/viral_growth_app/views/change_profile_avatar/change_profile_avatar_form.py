@@ -1,7 +1,7 @@
 from django import forms
 
 
-class AvatarForm(forms.Form):
+class ChangeProfileAvatarForm(forms.Form):
     avatar = forms.FileField(
         widget=forms.FileInput(
             attrs={

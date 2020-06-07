@@ -13,11 +13,13 @@ class UserListView(LoginRequiredMixin, BaseView):
 
     def get(self, request, *args, **kwargs):
         user_list_all = User.objects.exclude(id=request.user.id)
-
         page_number = kwargs.get(PAGE) or 1
 
         paginator = Paginator(user_list_all, ViralGrowthAppConfig.pagination_size)
 
+        return self.__configure_pagination(request, paginator, page_number)
+
+    def __configure_pagination(self, request, paginator, page_number):
         try:
             page = paginator.page(page_number)
         except PageNotAnInteger:
@@ -25,24 +27,29 @@ class UserListView(LoginRequiredMixin, BaseView):
         except EmptyPage:
             return redirect(reverse(USER_LIST_PAGE, args=(paginator.num_pages,)))
 
-        pages = []
-
-        pagination_data = {}
-        if page.has_previous():
-            pagination_data['previous'] = str(page.previous_page_number())
-            pages.append(str(page.previous_page_number()))
-
-        pages.append(page_number)
-
-        if page.has_next():
-            pagination_data['next'] = str(page.next_page_number())
-            pages.append(str(page.next_page_number()))
-
-        pagination_data['pages'] = pages
-        pagination_data['current'] = page_number
+        pagination_data = self.__get_pagination_data(page, page_number)
 
         return self.render_template(
             request,
             users=UserShortSerializer(page.object_list, many=True).data,
             pagination=pagination_data,
         )
+
+    def __get_pagination_data(self, page, page_number):
+        pages = []
+        pagination_data = {}
+
+        if page.has_previous():
+            pagination_data[PREVIOUS] = str(page.previous_page_number())
+            pages.append(str(page.previous_page_number()))
+
+        pages.append(page_number)
+
+        if page.has_next():
+            pagination_data[NEXT] = str(page.next_page_number())
+            pages.append(str(page.next_page_number()))
+
+        pagination_data[PAGES] = pages
+        pagination_data[CURRENT] = page_number
+
+        return pagination_data

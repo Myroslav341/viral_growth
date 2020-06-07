@@ -4,19 +4,19 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from ...library.constants import *
 from ..base_view import BaseView
-from .upload_photo_form import UploadPhotoForm
+from .change_profile_bio_form import ChangeProfileBioForm
 
 
-class UploadPhotoView(LoginRequiredMixin, BaseView):
+class ChangeProfileBioView(LoginRequiredMixin, BaseView):
     def post(self, request, *args, **kwargs):
-        form = UploadPhotoForm(request.POST, request.FILES)
+        form = ChangeProfileBioForm(request.POST)
 
         if form.is_valid():
-            return self.__upload_photo(request.user, form.cleaned_data)
+            return self.__update_bio(request.user, form.cleaned_data)
 
         return HttpResponseBadRequest('Bad request')
 
-    def __upload_photo(self, user, data):
-        user.upload_photo(data[PHOTO])
+    def __update_bio(self, user, data):
+        user.update_profile_bio(data[BIO])
 
         return redirect(reverse(HOME_PAGE))

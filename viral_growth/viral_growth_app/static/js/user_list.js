@@ -1,9 +1,9 @@
 function ready(){
     var avatars = document.getElementsByClassName("avatar");
 
-    for (avatar in avatars) {
-        avatars[avatar].style.height = avatars[avatar].width + "px";
-        avatars[avatar].style.width = avatars[avatar].width + "px";
+    for (avatar_number in avatars) {
+        avatars[avatar_number].style.height = avatars[avatar_number].width + "px";
+        avatars[avatar_number].style.width = avatars[avatar_number].width + "px";
     }
 }
 

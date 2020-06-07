@@ -9,9 +9,6 @@ class LoginBackend(ModelBackend):
     def authenticate(self, request: django_request, username: str = None, password: str = None, **kwargs) -> User:
         user_model = get_user_model()
 
-        if username is None:
-            username = kwargs.get(EMAIL)
-
         try:
             user = user_model.objects.get(email=username)
         except user_model.DoesNotExist:

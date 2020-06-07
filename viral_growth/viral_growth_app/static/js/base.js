@@ -57,6 +57,6 @@ function updateClipboard(newClip, x, y) {
     navigator.clipboard.writeText(newClip).then(function() {
         create_flash(x, y);
     }, function() {
-        alert("clipboard copy error");
+        alert("clipboard set error");
     });
 }

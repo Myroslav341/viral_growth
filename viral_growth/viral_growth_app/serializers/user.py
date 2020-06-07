@@ -11,15 +11,13 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        exclude = [
-            'id',
-            'is_staff',
-            'is_superuser',
-            'password',
-            'avatar',
-            'last_login',
-            'groups',
-            'user_permissions'
+        fields = [
+            'email',
+            'username',
+            'invited_users_count',
+            'joined_users_count',
+            'avatar_url',
+            'page'
         ]
 
     def get_avatar_url(self, obj):

@@ -4,7 +4,8 @@ from .logout import LogoutView
 from .generate_link import GenerateLinkView
 from .invitation_page import InvitationPageView
 from .sign_up import SignUpView
-from .change_profile_info import ChangeProfileInfoView
+from .change_profile_bio import ChangeProfileBioView
 from .upload_photo import UploadPhotoView
 from .user_list import UserListView
 from .view_profile import ViewProfileView
+from .change_profile_avatar import ChangeProfileAvatarView

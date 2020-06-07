@@ -4,19 +4,19 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from ...library.constants import *
 from ..base_view import BaseView
-from .change_profile_info_form import ChangeProfileInfoForm
+from .change_profile_avatar_form import ChangeProfileAvatarForm
 
 
-class ChangeProfileInfoView(LoginRequiredMixin, BaseView):
+class ChangeProfileAvatarView(LoginRequiredMixin, BaseView):
     def post(self, request, *args, **kwargs):
-        form = ChangeProfileInfoForm(request.POST)
+        form = ChangeProfileAvatarForm(request.POST, request.FILES)
 
         if form.is_valid():
-            return self.__update_info(request, form.cleaned_data)
+            return self.__update_avatar(request.user, form.cleaned_data)
 
         return HttpResponseBadRequest('Bad request')
 
-    def __update_info(self, request, data):
-        request.user.update_profile_info(data[PROFILE_INFO])
+    def __update_avatar(self, user, data):
+        user.update_avatar(data[AVATAR])
 
         return redirect(reverse(HOME_PAGE))

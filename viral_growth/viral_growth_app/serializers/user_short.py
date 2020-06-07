@@ -10,7 +10,12 @@ class UserShortSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'avatar_url', 'bio', 'id']
+        fields = [
+            'username',
+            'avatar_url',
+            'bio',
+            'id'
+        ]
 
     def get_avatar_url(self, obj):
         return prepare_s3_image_url(obj.avatar.url)

@@ -8,18 +8,21 @@ function ready(){
 function change_uploaded_avatar(){
     var element = document.getElementById("chosen_file")
     var file_path = document.getElementById("avatar_upload").value.split('\\')
+
     element.textContent = file_path[file_path.length - 1];
 }
 
 function change_uploaded_photo(){
     var element = document.getElementById("chosen_file_2")
     var file_path = document.getElementById("photo_upload").value.split('\\')
+
     element.textContent = file_path[file_path.length - 1];
 }
 
 function modal_create(){
     var user_info = document.getElementsByClassName("overflow")[0].outerText;
     var text_input = document.getElementById("message-text");
+
     text_input.value = user_info;
 }
 

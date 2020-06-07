@@ -1,0 +1,1 @@
+from .change_profile_avatar_view import ChangeProfileAvatarView

@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import MaxLengthValidator
 from ...library.validators import validate_password, validate_unique_field
 from ...library.constants import *
 from ...models import User
@@ -16,7 +17,7 @@ class SignUpForm(forms.Form):
     )
 
     username = forms.CharField(
-        validators=[validate_unique_field(User, USERNAME)],
+        validators=[validate_unique_field(User, USERNAME), MaxLengthValidator(12)],
         widget=forms.TextInput(
             attrs={
                 'id': 'username',
