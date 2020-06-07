@@ -11,4 +11,5 @@ urlpatterns = [
     path('generate-invitation-link/', GenerateLinkView.as_view(), name='generate-invitation-link'),
     path('join-us/<data>', InvitationPageView.as_view(), name='join-us'),
     path('change-profile-info/', ChangeProfileInfoView.as_view(), name='change-profile-info'),
+    path('upload-photo/', UploadPhotoView.as_view(), name='upload-photo'),
 ]

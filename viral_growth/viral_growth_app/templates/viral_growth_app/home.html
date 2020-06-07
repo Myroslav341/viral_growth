@@ -47,8 +47,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="row edit_button">
-                    <button type="button" class="btn btn-primary" id="edit_info_button" data-toggle="modal" data-target="#exampleModal" onclick="modal_create()">Edit</button>
+                <div class="row" id="profile_change_container">
+                    <form action="upload-photo/" method="post" enctype="multipart/form-data" id="profile_change_form">
+                        {% csrf_token %}
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item change_item">
+                                        <div class="custom-file">
+                                            {{ upload_photo_form.photo }}
+                                            <label class="custom-file-label" for="avatar_upload" id="chosen_file_2">Choose file</label>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button type="submit" class="btn btn-primary center_element" id="upload_button_2">Upload new photo</button>
+                                    </li>
+                                </ul>
+                                <div class="form-inline my-lg-0">
+                                    <div class="nav-item">
+                                        <button type="button" class="btn btn-primary" id="edit_info_button_2" data-toggle="modal" data-target="#exampleModal" onclick="modal_create()">Edit info</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </form>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _  # todo ?
 from django.contrib.auth.models import PermissionsMixin
 from .usermanager import UserManager
 from ..apps import ViralGrowthAppConfig
-from ..library.helpers import user_storage_path
+from ..library.helpers import user_storage_path, user_storage_photo_path
 from ..library.constants import DEFAULT_AVATAR
 from .page import Page
 
@@ -55,6 +55,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.avatar = new_avatar
 
         self.save()
+
+    def upload_photo(self, photo_file):
+        from .photo import Photo
+
+        photo = Photo()
+
+        photo.photo_file.field.upload_to = user_storage_photo_path(self, photo_file.name)
+        photo.photo_file = photo_file
+        photo.page = self.page
+
+        photo.save()
 
     def update_profile_info(self, new_info: str):
         self.page.profile_info = new_info

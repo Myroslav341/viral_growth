@@ -10,6 +10,7 @@ DATA = 'data'
 ID = 'id'
 AVATAR = 'avatar'
 PROFILE_INFO = 'profile_info'
+PHOTO = 'photo'
 
 THIS_APP_NAME = ViralGrowthAppConfig.name
 

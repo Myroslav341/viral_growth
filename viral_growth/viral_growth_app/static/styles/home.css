@@ -53,12 +53,40 @@
 .edit_button{
     float: right;
     padding-top: 10px;
+    width: 100%;
+}
+
+.upload_photo_button_container{
+    float: left;
+    padding-top: 10px;
+    width: 100%;
+}
+
+#upload_photo_button{
+    width: 100%;
 }
 
 #edit_info_button{
-    width: 100px;
+    width: 100%;
 }
 
 .model_container {
     padding-top: 5%;
+}
+
+#profile_change_container{
+    padding-top: 10px;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#profile_change_form{
+    width: 100%;
+
+}
+
+.change_item{
+    padding-right: 5px;
+    padding-left: 5px;
 }
