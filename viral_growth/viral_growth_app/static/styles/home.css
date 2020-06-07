@@ -33,3 +33,32 @@
 #invited_info{
     padding-top: 30px;
 }
+
+.overflow{
+    height: 90%;
+    overflow: visible;
+    overflow-y:scroll;
+    position:relative;
+    margin: 10px;
+}
+
+.info_container{
+    height: 200px;
+    width: 100%;
+    border-color: #343a40;
+    border-style: ridge;
+    border-radius: 8px;
+}
+
+.edit_button{
+    float: right;
+    padding-top: 10px;
+}
+
+#edit_info_button{
+    width: 100px;
+}
+
+.model_container {
+    padding-top: 5%;
+}

@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
+from .page import Page
 
 
 class UserManager(BaseUserManager):
@@ -13,6 +14,8 @@ class UserManager(BaseUserManager):
 
         user = self.model(email=email, username=username, **extra_fields)
         user.set_password(password)
+
+        user.page = Page.objects.create()
 
         user.save(using=self._db)
 

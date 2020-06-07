@@ -3,7 +3,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from ..base_view import BaseView
 from ...library.constants import *
-from .home_form import HomeForm
+from .avatar_form import AvatarForm
+from ..change_profile_info.change_profile_info_form import ChangeProfileInfoForm
 from ...serializers import UserSerializer
 
 
@@ -11,14 +12,19 @@ class HomeView(LoginRequiredMixin, BaseView):
     template_name = HOME_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):
-        return self.render_template(request, form=HomeForm(), **UserSerializer(request.user).data)
+        return self.render_template(
+            request,
+            avatar_form=AvatarForm(),
+            profile_info_form=ChangeProfileInfoForm(),
+            **UserSerializer(request.user).data
+        )
 
     def post(self, request, *args, **kwargs):
-        login_form = HomeForm(request.POST, request.FILES)
+        avatar_form = AvatarForm(request.POST, request.FILES)
 
-        if login_form.is_valid():
-            request.user.update_avatar(login_form.cleaned_data[AVATAR])
+        if avatar_form.is_valid():
+            request.user.update_avatar(avatar_form.cleaned_data[AVATAR])
 
             return redirect(reverse(HOME_PAGE))
 
-        return self.render_template(request, form=login_form, **UserSerializer(request.user).data)
+        return self.render_template(request, form=avatar_form, **UserSerializer(request.user).data)

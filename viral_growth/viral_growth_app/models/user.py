@@ -6,6 +6,7 @@ from .usermanager import UserManager
 from ..apps import ViralGrowthAppConfig
 from ..library.helpers import user_storage_path
 from ..library.constants import DEFAULT_AVATAR
+from .page import Page
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -19,6 +20,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=f'{ViralGrowthAppConfig.media_root_prefix}/{DEFAULT_AVATAR}',
         upload_to=user_storage_path
     )
+
+    page = models.OneToOneField(Page, on_delete=models.CASCADE, default=None)
 
     is_staff = models.BooleanField(
         _('staff status'),
@@ -52,6 +55,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.avatar = new_avatar
 
         self.save()
+
+    def update_profile_info(self, new_info: str):
+        self.page.profile_info = new_info
+
+        self.page.save()
 
     def __str__(self):
         return f'{self.email}'

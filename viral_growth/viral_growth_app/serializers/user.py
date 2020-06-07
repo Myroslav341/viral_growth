@@ -9,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ['id', 'is_staff', 'is_superuser', 'password', 'avatar']
+        depth = 1
 
     def get_avatar_url(self, obj):
         return obj.avatar.url.split('?')[0]

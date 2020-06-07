@@ -25,7 +25,7 @@
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                                {{ form.avatar }}
+                                {{ avatar_form.avatar }}
                                 <label class="custom-file-label" for="avatar_upload" id="chosen_file">Choose file</label>
                             </div>
                         </div>
@@ -39,7 +39,44 @@
             </div>
             <div class="col-2">
             </div>
-            <div class="col-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque autem debitis, enim expedita nam nihil perferendis porro quo suscipit tempora. Ad architecto distinctio dolorum inventore possimus, qui sit veritatis vero!</div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="info_container">
+                        <div class="overflow">
+                             {{ page.profile_info }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row edit_button">
+                    <button type="button" class="btn btn-primary" id="edit_info_button" data-toggle="modal" data-target="#exampleModal" onclick="modal_create()">Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade model_container" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editing profile info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="change-profile-info/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Profile info:</label>
+                                {{ profile_info_form.profile_info }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
