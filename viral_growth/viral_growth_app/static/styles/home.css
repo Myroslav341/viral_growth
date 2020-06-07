@@ -90,3 +90,19 @@
     padding-right: 5px;
     padding-left: 5px;
 }
+
+.profile_photo{
+    width: 200px;
+    height: 200px;
+    border-color: #343a40;
+    border-style: ridge;
+    border-radius: 8px;
+}
+
+#photo_container{
+    padding-top: 20px;
+}
+
+.photo_row{
+    padding-bottom: 15px;
+}

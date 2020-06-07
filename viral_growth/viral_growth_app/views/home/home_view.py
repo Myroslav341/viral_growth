@@ -14,6 +14,7 @@ class HomeView(LoginRequiredMixin, BaseView):
     template_name = HOME_VIEW_TEMPLATE
 
     def get(self, request, *args, **kwargs):
+        data = UserSerializer(request.user).data
         return self.render_template(
             request,
             avatar_form=AvatarForm(),

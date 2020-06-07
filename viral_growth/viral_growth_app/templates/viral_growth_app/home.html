@@ -1,5 +1,6 @@
 {% extends "viral_growth_app/base.html" %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}
     <title>Home</title>
@@ -56,7 +57,7 @@
                                     <li class="nav-item change_item">
                                         <div class="custom-file">
                                             {{ upload_photo_form.photo }}
-                                            <label class="custom-file-label" for="avatar_upload" id="chosen_file_2">Choose file</label>
+                                            <label class="custom-file-label" for="photo_upload" id="chosen_file_2">Choose file</label>
                                         </div>
                                     </li>
                                     <li class="nav-item">
@@ -71,6 +72,20 @@
                             </div>
                         </nav>
                     </form>
+                </div>
+
+                <div class="container" id="photo_container">
+                    <div class="row justify-content-md-center photo_row">
+                    {% for photo in page.photos %}
+                        <div class="col col-lg-4">
+                            <img src="{{ photo.1 }}" alt="profile_photo" class="profile_photo center_element">
+                        </div>
+                        {% if photo.0|get_mod:3 == "0" %}
+                    </div>
+                    <div class="row justify-content-md-center photo_row">
+                        {% endif %}
+                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
