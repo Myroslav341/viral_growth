@@ -7,7 +7,6 @@ class ChangeProfileAvatarForm(forms.Form):
             attrs={
                 'class': 'custom-file-input',
                 'id': 'avatar_upload',
-                'aria-describedby': 'inputGroupFileAddon01'
             }
         )
     )

@@ -7,7 +7,6 @@ class UploadPhotoForm(forms.Form):
             attrs={
                 'class': 'custom-file-input',
                 'id': 'photo_upload',
-                'aria-describedby': 'inputGroupFileAddon01'
             }
         )
     )

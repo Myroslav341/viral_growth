@@ -2,7 +2,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.http import Http404
-from django.utils.translation import gettext_lazy as _  # todo ?
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import PermissionsMixin
 from .usermanager import UserManager
 from ..apps import ViralGrowthAppConfig
@@ -44,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         ordering = ['id']
-        verbose_name = _('user')  # todo ?
+        verbose_name = _('user')
         verbose_name_plural = _('users')
 
     def increase_invited_count(self):

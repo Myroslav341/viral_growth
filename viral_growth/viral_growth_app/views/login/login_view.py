@@ -34,7 +34,7 @@ class LoginView(BaseView):
             user = authenticate(username=form_data[EMAIL],
                                 password=form_data[PASSWORD])
 
-            login(request, user)  # todo how does login work? cookies, jwt?
+            login(request, user)
 
             return redirect(reverse(HOME_PAGE))
         except ValueError as e:

@@ -106,4 +106,3 @@ def get_user_template_name(user) -> str:
     template = ProfileTemplatesEnum(int(user.page.template))
 
     return str(template.value)
-

@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#h=w&6(9szfhz%dm@oc%$n*+w00o*ixzi6$foz(+(z717^6mtw'  # todo move to variables
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': os.environ.get('VIRAL_GROWTH_DB_NAME'),
         'USER': os.environ.get('VIRAL_GROWTH_DB_USER'),
         'PASSWORD': os.environ.get('VIRAL_GROWTH_DB_PASSWORD'),
-        'HOST': '',  # todo import this
+        'HOST': os.environ.get('VIRAL_GROWTH_DB_HOST'),
         'PORT': os.environ.get('VIRAL_GROWTH_DB_PORT'),
     }
 }
