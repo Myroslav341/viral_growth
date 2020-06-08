@@ -1,6 +1,6 @@
 from ..base_view import BaseView
 from ...library.constants import *
-from ...library.helpers import get_user_object
+from ...library.helpers import get_user_object, get_user_template_html
 from ...serializers import UserSerializer
 
 
@@ -12,8 +12,7 @@ class ViewProfileView(BaseView):
 
     def get(self, request, *args, **kwargs):
         user = get_user_object(kwargs.get(ID))
-        template = ProfileTemplatesEnum(int(user.page.template)).name
-        self.template_name = PROFILE_TEMPLATES[template]
+        self.template_name = get_user_template_html(user)
 
         return self.render_template(
             request,

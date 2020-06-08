@@ -12,7 +12,6 @@ urlpatterns = [
     path('join-us/<data>', InvitationPageView.as_view(), name='join-us'),
     path('change-profile-info/', ChangeProfileBioView.as_view(), name='change-profile-info'),
     path('change-profile-avatar/', ChangeProfileAvatarView.as_view(), name='change-profile-avatar'),
-    path('change-profile-template/', ChangeProfileTemplateView.as_view(), name='change-profile-template'),
     path('upload-photo/', UploadPhotoView.as_view(), name='upload-photo'),
     path('user-list/<page>', UserListView.as_view(), name='user-list'),
     path('user/<id>', ViewProfileView.as_view(), name='user'),
