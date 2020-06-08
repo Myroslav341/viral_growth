@@ -7,7 +7,7 @@
 {% endblock title %}
 
 {% block imports %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/profile_2.css' %}">
 {% endblock imports %}
 
 {% block content %}
@@ -95,10 +95,10 @@
                 <div class="container" id="photo_container">
                     <div class="row justify-content-md-center photo_row">
                     {% for photo in page.photos %}
-                        <div class="col col-lg-4">
+                        <div class="col col-lg-3">
                             <img src="{{ photo.1 }}" alt="profile_photo" class="profile_photo center_element">
                         </div>
-                        {% if photo.0|get_mod:3 == "0" %}
+                        {% if photo.0|get_mod:4 == "0" %}
                     </div>
                     <div class="row justify-content-md-center photo_row">
                         {% endif %}

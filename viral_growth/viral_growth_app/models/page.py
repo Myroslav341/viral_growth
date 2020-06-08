@@ -5,6 +5,8 @@ from ..apps import ViralGrowthAppConfig
 class Page(models.Model):
     bio = models.TextField(default='Profile bio')
 
+    template = models.SmallIntegerField(default=1)
+
     def get_short_bio(self) -> str:
         """
         returns shorted user bio using profile_bio_short_length param

@@ -10,7 +10,10 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        exclude = ['id']
+        exclude = [
+            'id',
+            'template'
+        ]
 
     def get_photos(self, obj: Page) -> List[List[str]]:
         """

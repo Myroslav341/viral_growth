@@ -1,0 +1,1 @@
+from .change_profile_template_view import ChangeProfileTemplateView

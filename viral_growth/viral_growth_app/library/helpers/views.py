@@ -1,7 +1,7 @@
-from typing import Dict
+from typing import Dict, List
 from django.core import signing
 from django.http import Http404
-from ..constants import INVITATION_PAGE
+from ..constants import INVITATION_PAGE, ProfileTemplatesEnum, PROFILE_TEMPLATES
 
 
 def sign_dict(**kwargs) -> str:
@@ -59,3 +59,51 @@ def prepare_s3_image_url(url: str) -> str:
     :params url: image url
     """
     return url.split('?')[0]
+
+
+def template_number_exists(template_number: int) -> bool:
+    """
+    check template number in ProfileTemplatesEnum
+    :return: True if founded False otherwise
+    """
+    try:
+        ProfileTemplatesEnum(template_number)
+    except ValueError:
+        return False
+
+    return True
+
+
+def prepare_template_name(name: str) -> str:
+    """
+    prepare template name for user interface
+    """
+    return name.replace('_', ' ')
+
+
+def generate_template_choices() -> List:
+    """
+    generate template choices for user selection
+    """
+    return list(
+        (str(template.value), prepare_template_name(template.name)) for template in ProfileTemplatesEnum
+    )
+
+
+def get_user_template_html(user) -> str:
+    """
+    get template file name
+    """
+    template = ProfileTemplatesEnum(int(user.page.template))
+
+    return PROFILE_TEMPLATES[template.name]
+
+
+def get_user_template_name(user) -> str:
+    """
+    get template number
+    """
+    template = ProfileTemplatesEnum(int(user.page.template))
+
+    return str(template.value)
+

@@ -1,18 +1,24 @@
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.http import Http404
 from django.utils.translation import gettext_lazy as _  # todo ?
 from django.contrib.auth.models import PermissionsMixin
 from .usermanager import UserManager
 from ..apps import ViralGrowthAppConfig
-from ..library.helpers import user_storage_path, user_storage_photo_path
+from ..library.helpers import user_storage_path, user_storage_photo_path, template_number_exists
 from ..library.constants import DEFAULT_AVATAR
 from .page import Page
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    username = models.CharField(_('username'), unique=True, max_length=12, blank=True)
+    username = models.CharField(
+        _('username'),
+        unique=True,
+        max_length=12,
+        blank=True
+    )
 
     invited_users_count = models.IntegerField(default=0)
     joined_users_count = models.IntegerField(default=0)
@@ -27,8 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
-        help_text=_(
-            'Designates whether the user can log into this admin site.'),
+        help_text=_('Designates whether the user can log into this admin site.'),
     )
     is_superuser = models.BooleanField(_('superuser'), default=False)
 
@@ -86,6 +91,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         update user bio
         """
         self.page.bio = new_bio
+
+        self.page.save()
+
+    def update_template(self, new_template: int):
+        """
+        update user profile template
+        :raises Http404: if no such template
+        """
+        if not template_number_exists(new_template):
+            raise Http404
+
+        self.page.template = new_template
 
         self.page.save()
 

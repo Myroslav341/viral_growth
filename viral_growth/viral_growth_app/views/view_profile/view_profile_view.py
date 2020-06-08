@@ -12,6 +12,8 @@ class ViewProfileView(BaseView):
 
     def get(self, request, *args, **kwargs):
         user = get_user_object(kwargs.get(ID))
+        template = ProfileTemplatesEnum(int(user.page.template)).name
+        self.template_name = PROFILE_TEMPLATES[template]
 
         return self.render_template(
             request,

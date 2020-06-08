@@ -9,3 +9,4 @@ from .upload_photo import UploadPhotoView
 from .user_list import UserListView
 from .view_profile import ViewProfileView
 from .change_profile_avatar import ChangeProfileAvatarView
+from .change_profile_template import ChangeProfileTemplateView
