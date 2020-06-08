@@ -41,8 +41,14 @@
 
             <div class="form-group">
                 <label for="password">Password</label>
-                {{ form.password }}
-
+                <div class="row">
+                    <div class="col-10">
+                        {{ form.password }}
+                    </div>
+                    <div class="col-2">
+                            <button class="btn btn-light" id="reveal_password" onclick="reveal_password_signup()" type="button">Reveal</button>
+                    </div>
+                </div>
                 {% for key, value in form.errors.items %}
                     {% if key == 'password' %}
                         <div class="validation_error">
@@ -54,8 +60,14 @@
 
             <div class="form-group">
                 <label for="confirm_password">Confirm password</label>
-                {{ form.confirm_password }}
-
+                <div class="row">
+                    <div class="col-10">
+                        {{ form.confirm_password }}
+                    </div>
+                    <div class="col-2">
+                            <button class="btn btn-light" id="reveal_confirm_password" onclick="reveal_confirm_password_signup()" type="button">Reveal</button>
+                    </div>
+                </div>
                 {% for key, value in form.errors.items %}
                     {% if key == 'confirm_password' %}
                         <div class="validation_error">
@@ -65,7 +77,17 @@
                 {% endfor %}
             </div>
             <div id="messages"></div>
-            <button type="submit" class="btn btn-primary center_block" id="sign_up_button">Sign up</button>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-2">
+                    <a class="btn btn-primary" href="../login/" role="button" id="signup_button">Back</a>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary center_block" id="sign_up_button">Sign up</button>
+                </div>
+                <div class="col-3"></div>
+            </div>
         </form>
     </div>
 

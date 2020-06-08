@@ -35,5 +35,31 @@ function create_message(){
     messages.appendChild(element);
 }
 
+function reveal_password_signup(){
+    var password_element = document.getElementById("password");
+    var reveal_button = document.getElementById("reveal_password");
+
+    if (password_element.getAttribute("type") === 'password'){
+        password_element.setAttribute('type', 'text');
+        reveal_button.textContent = "Hide";
+    } else {
+        password_element.setAttribute('type', 'password');
+        reveal_button.textContent = "Reveal";
+    }
+}
+
+function reveal_confirm_password_signup(){
+    var password_element = document.getElementById("confirm_password");
+    var reveal_button = document.getElementById("reveal_confirm_password");
+
+    if (password_element.getAttribute("type") === 'password'){
+        password_element.setAttribute('type', 'text');
+        reveal_button.textContent = "Hide";
+    } else {
+        password_element.setAttribute('type', 'password');
+        reveal_button.textContent = "Reveal";
+    }
+}
+
 document.getElementById("password").addEventListener('change', checkPasswordTheSame);
 document.getElementById("confirm_password").addEventListener('change', checkPasswordTheSame);

@@ -31,7 +31,14 @@
 
                     <div class="form-group input_field">
                         <label for="password">Password</label>
-                        {{ form.password }}
+                        <div class="row">
+                            <div class="col-10">
+                                {{ form.password }}
+                            </div>
+                            <div class="col-2">
+                                    <button class="btn btn-light" id="reveal" onclick="reveal_password()" type="button">Reveal</button>
+                            </div>
+                        </div>
 
                         {% for key, value in form.errors.items %}
                             {% if key == 'password' %}
@@ -57,4 +64,6 @@
             <div class="col-2"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 {% endblock content %}

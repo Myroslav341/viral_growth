@@ -16,3 +16,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+#reveal_password{
+    width: 100%;
+}
+
+#reveal_confirm_password{
+    width: 100%;
+}
